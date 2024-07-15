@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package com.example.testGrpcMessagingWithGo;
+
+option java_multiple_files = true;
+
+message PaymentRequest{
+  double amount = 1;
+  string receiverAccountNumber = 2;
+  string receiverName=3;
+}
+
+message PaymentResponse{
+  string paymentStatus = 1;
+  double amount = 2;
+}
+
+service PaymentService{
+  rpc makePayment(PaymentRequest) returns (PaymentResponse);
+}
+

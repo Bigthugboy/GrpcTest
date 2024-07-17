@@ -2,15 +2,10 @@ package com.example.testGrpcMessagingWithGo;
 
 import io.grpc.stub.StreamObserver;
 
-public class TestWithGoServerPaymentService extends PaymentServiceGrpc.PaymentServiceImplBase {
+public class TestWithGoServerPaymentService extends AddDebitAccountServiceGrpc.AddDebitAccountServiceImplBase {
+
     @Override
-    public void makePayment(PaymentRequest request, StreamObserver<PaymentResponse> responseObserver) {
-        responseObserver.onNext(PaymentResponse.newBuilder()
-                .setPaymentStatus("SuccessFul")
-                .setAmount(request.getAmount())
-                .build()
-        );
-        responseObserver.onCompleted();
+    public void addDebitAccount(AddDebitAccountRequest request, StreamObserver<AddDebitAccountResponse> responseObserver) {
 
     }
 }

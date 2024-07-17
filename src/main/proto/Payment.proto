@@ -4,18 +4,22 @@ package com.example.testGrpcMessagingWithGo;
 
 option java_multiple_files = true;
 
-message PaymentRequest{
-  double amount = 1;
-  string receiverAccountNumber = 2;
-  string receiverName=3;
+message Account {
+  string bankCode = 1;
+  string accountNumber = 2;
+  string commonName = 3;
+  string accountName = 4;
 }
 
-message PaymentResponse{
-  string paymentStatus = 1;
-  double amount = 2;
+message AddDebitAccountRequest {
+  repeated Account accounts = 1;
 }
 
-service PaymentService{
-  rpc makePayment(PaymentRequest) returns (PaymentResponse);
+message AddDebitAccountResponse {
+  string message = 1;
+  bool success = 2;
 }
 
+service AddDebitAccountService {
+  rpc addDebitAccount (AddDebitAccountRequest) returns (AddDebitAccountResponse);
+}
